@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Heading from './Heading';
+import Nav from './Nav';
+import Display from './Display';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      sortStatus: 'all'
+    }
+  }
+
+  handleClick(e) {
+    console.log(e);
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <div className="row">
+          <Heading title="Todo List:" />
+        </div>
+        <div className="row">
+          <div className="col">
+            <button onClick={this.handleClick} key="current" className="btn btn-secondary btn-sm">Current tasks </button>
+            <button onClick={this.handleClick} key="complete" className="btn btn-secondary btn-sm">Complete tasks </button>
+            <button onClick={this.handleClick} key="all" className="btn btn-secondary btn-sm">All tasks</button>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <Display sortStatus={this.state.sortStatus}/>
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default App;
