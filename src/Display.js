@@ -6,17 +6,25 @@ function Display(props) {
     //if no data set to empty string
     if (!itemList) { itemList = [] };
 
+
+
     //create list sorted by status
     let sortedList = [];
-    for (let i = 0; i < itemList.length; i++) {
-        if (props.sortStatus !== 'all') {
-            if (itemList[i].status === props.sortStatus) {
-                sortedList.push(itemList[i]);
-            }
-        } else {
-            sortedList.push(itemList[i]);
-        }
-    }
+    // for (let i = 0; i < itemList.length; i++) {
+    //     if (props.sortStatus !== 'all') {
+    //         if (itemList[i].status === props.sortStatus) {
+    //             sortedList.push(itemList[i]);
+    //         }
+    //     } else {
+    //         sortedList.push(itemList[i]);
+    //     }
+    // }
+    //if (props.sortStatus !== 'all') {
+    sortedList = itemList.filter(item => props.sortStatus === 'all' || item.status === props.sortStatus);
+    //} else {
+    //    sortedList = itemList;
+    //}
+
 
     const completeTask = (e) => {
         let index = itemList.findIndex(x => x.id === parseInt(e.target.dataset.id));
@@ -44,7 +52,7 @@ function Display(props) {
 
                         </li>)}
                 </ol>
-                        <p>You have {sortedList.length} tasks in the "{props.sortStatus}" list!</p>
+                <p>You have {sortedList.length} task in the "{props.sortStatus}" list!</p>
             </div>
         </div>
     )

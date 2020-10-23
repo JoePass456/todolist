@@ -8,7 +8,8 @@ class App extends React.Component {
     super();
     this.state = {
       sortStatus: 'current',
-      value: ''
+      value: '',
+      
     }
        
   }
